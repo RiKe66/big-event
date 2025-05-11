@@ -30,7 +30,5 @@ public class UserController {
             //被占用
             return Result.error("用户名已被占用");
         }
-
-        //注册
     }
 }
