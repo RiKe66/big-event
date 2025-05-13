@@ -16,6 +16,7 @@ public class ArticleController {
     @RequestMapping("/list")
     public Result<String> list(@RequestHeader(name = "Authorization") String token,HttpServletResponse response){
         //验证token
+        //
         try {
             Map<String,Object> claims = JwtUtil.parseToken(token);
             return Result.success("成功");
