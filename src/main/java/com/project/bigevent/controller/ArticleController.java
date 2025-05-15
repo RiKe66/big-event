@@ -14,16 +14,15 @@ import java.util.Map;
 @RequestMapping("/article")
 public class ArticleController {
     @RequestMapping("/list")
-    public Result<String> list(@RequestHeader(name = "Authorization") String token,HttpServletResponse response){
-        //验证token
-        //
-        try {
-            Map<String,Object> claims = JwtUtil.parseToken(token);
-            return Result.success("成功");
-        } catch (Exception e) {
-            response.setStatus(401);
-            return Result.error("未登录");
-        }
-
+    public Result<String> list(/*@RequestHeader(name = "Authorization") String token,HttpServletResponse response*/){
+//        //验证token
+//        try {
+//            Map<String,Object> claims = JwtUtil.parseToken(token);
+//            return Result.success("成功");
+//        } catch (Exception e) {
+//            response.setStatus(401);
+//            return Result.error("未登录");
+//        }
+        return Result.success("显示成功");
     }
 }
