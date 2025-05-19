@@ -4,15 +4,17 @@ package com.project.bigevent.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 //lombok 编译阶段，自动添加getter和setter方法
 @Data
 public class User {
-    @TableId(value = "id", type = IdType.AUTO)
+
     private Integer id;//主键ID
     private String username;//用户名
+    @JsonIgnore//spring mvc转换时会自动忽略，最终json中就没有密码
     private String password;//密码
     private String nickname;//昵称
     private String email;//邮箱
