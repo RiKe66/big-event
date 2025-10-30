@@ -20,9 +20,12 @@ public class LoginInterceptor implements HandlerInterceptor {
         //验证token
         try {
             Map<String,Object> claims = JwtUtil.parseToken(token);
+            //放行
             return true;
         } catch (Exception e) {
+            //http响应状态码为401
             response.setStatus(401);
+            //拦截
             return false;
         }
     }

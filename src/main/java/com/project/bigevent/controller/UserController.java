@@ -62,7 +62,7 @@ public class UserController {
     public Result<User> userInfo(@RequestHeader(name = "Authorization") String token) {
         //根据用户名查询用户
         Map<String,Object>  map = JwtUtil.parseToken(token);
-        String username = map.get("username").toString();
+        String username = (String) map.get("username");
         User user = userService.findByUserName(username);
         return Result.success(user);
     }

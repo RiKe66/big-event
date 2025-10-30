@@ -14,7 +14,7 @@ public class User {
 
     private Integer id;//主键ID
     private String username;//用户名
-    @JsonIgnore//spring mvc转换时会自动忽略，最终json中就没有密码
+    @JsonIgnore//spring mvc把当前对象转换成json字符串时会自动忽略，最终json中就没有密码
     private String password;//密码
     private String nickname;//昵称
     private String email;//邮箱
