@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
         User u = userMapper.selectByUsername(username);
         return u;
     }
-
+    //My-batis Plus自带注册（添加用户）
     @Override
     public void register(String username, String password) {
         //加密处理
@@ -33,5 +33,11 @@ public class UserServiceImpl implements UserService {
         user.setUpdateTime(LocalDateTime.now());
         userMapper.insert(user);
 
+    }
+
+    @Override
+    public void update(User user) {
+        user.setUpdateTime(LocalDateTime.now());
+        userMapper.update(user);
     }
 }
