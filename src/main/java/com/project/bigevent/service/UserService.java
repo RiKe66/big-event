@@ -11,6 +11,8 @@ public interface UserService {
     void register(String username, String password);
     //更新（手写sql语句）
     void update(User user);
-    //更新 mybatisplus自带方法
+    //更新头像
+    void updateAvatar(String avatarUrl);
+
 
 }
