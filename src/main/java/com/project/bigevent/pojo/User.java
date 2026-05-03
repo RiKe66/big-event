@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Data
 public class User {
     @NotNull//设置不能为null
+    @TableId(type = IdType.AUTO)// 告诉 MyBatis-Plus 这个主键是自增的，不要再自己生成雪花 ID 了
     private Integer id;//主键ID
     private String username;//用户名
     @JsonIgnore//spring mvc把当前对象转换成json字符串时会自动忽略，最终json中就没有密码

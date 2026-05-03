@@ -1,6 +1,7 @@
 package com.project.bigevent.controller;
 
 
+import com.mysql.cj.util.StringUtils;
 import com.project.bigevent.pojo.Result;
 import com.project.bigevent.pojo.User;
 import com.project.bigevent.service.UserService;
@@ -83,6 +84,37 @@ public class UserController {
     public Result updateAvatar(@RequestParam @URL String avatarUrl){
         userService.updateAvatar(avatarUrl);
         return Result.success();
+    }
+
+    @PatchMapping("/updatePwd")
+    public Result updatePwd(@RequestBody Map<String,String> params){
+        //1.校验参数
+        String oldPwd = params.get("old_pwd");
+        String newPwd = params.get("new_pwd");
+        String rePwd = params.get("re_pwd");
+
+        if(StringUtils.isNullOrEmpty(oldPwd)||StringUtils.isNullOrEmpty(newPwd)||StringUtils.isNullOrEmpty(rePwd)){
+            return Result.error("缺少参数");
+        }
+
+        //原密码是否正确
+        //调用userservice根据用户名拿到原密码
+        Map<String,Object> map = ThreadLocalUtil.get();
+        String username = (String)map.get("username");
+        User loginUser = userService.findByUserName(username);
+        if (!loginUser.getPassword().equals(Md5Util.getMD5String(oldPwd))){
+            return Result.error("原密码错误");
+        }
+
+        if (!rePwd.equals(newPwd)){
+            return Result.error("两次密码不一致");
+        }
+
+        //2.调用service完成更新
+        userService.updatePwd(newPwd);
+        return Result.success();
+
+
     }
 
 
